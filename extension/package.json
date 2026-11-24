@@ -1,0 +1,16 @@
+{
+  "name": "@exitlens/extension",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build && node build.mjs"
+  },
+  "dependencies": {
+    "@xyflow/react": "^12.8.5",
+    "axe-core": "^4.10.3",
+    "lucide-react": "^0.468.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "tldts": "^7.5.5"
+  }
+}

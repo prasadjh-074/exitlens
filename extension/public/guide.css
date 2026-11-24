@@ -1,0 +1,21 @@
+[data-exitlens-highlight] {
+  outline: 3px solid #b697ff !important;
+  outline-offset: 5px !important;
+}
+#exitlens-guidance {
+  position: fixed !important;
+  z-index: 2147483646 !important;
+  bottom: 14px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  max-width: min(520px, 92vw) !important;
+  width: max-content !important;
+  border: 1px solid #a787f1 !important;
+  background: #221b30 !important;
+  color: #f4edff !important;
+  padding: 10px 16px !important;
+  border-radius: 12px !important;
+  font: 600 14px/1.45 system-ui !important;
+  box-shadow: 0 6px 22px #0006 !important;
+  pointer-events: none !important;
+}
