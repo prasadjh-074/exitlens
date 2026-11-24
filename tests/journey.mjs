@@ -63,6 +63,7 @@ try {
       await mkdir(process.env.EXITLENS_SCREENSHOTS, { recursive: true })
       await page.screenshot({
         path: path.join(process.env.EXITLENS_SCREENSHOTS, name + '.png'),
+        animations: 'disabled',
       })
     }
   }
@@ -106,7 +107,11 @@ try {
     studio.getByRole('heading', { name: 'Cancellation verified' }),
   ).toBeVisible()
   await expect(studio.getByText('4.00×', { exact: true })).toBeVisible()
+  await studio.getByRole('button', { name: 'Present', exact: true }).click()
+  const exitPresentation = studio.getByRole('button', { name: 'Exit presentation' })
+  await expect(exitPresentation).toBeVisible()
   await shot(studio, 'presentation-report')
+  await exitPresentation.click()
   expect(await records()).toHaveLength(0)
   await studio.getByRole('button', { name: 'Reset walkthrough' }).click()
   await expect(

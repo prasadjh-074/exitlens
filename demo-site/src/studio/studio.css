@@ -99,7 +99,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible {
   isolation: isolate;
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   align-items: end;
   gap: 32px;
   padding-block: 34px 28px;
@@ -134,7 +134,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible {
   letter-spacing: -.035em;
   margin-top: 8px;
 }
-.hero-support { padding-block: 0 5px; max-width: 248px; }
+.hero-support { padding-block: 0 5px; max-width: 208px; }
 .hero-support p {
   max-width: 25ch;
   margin: 0 0 16px;
@@ -318,7 +318,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible {
 }
 .browser-scene { position: relative; width: 100%; animation: studio-enter .23s ease-out both; }
 @keyframes studio-enter {
-  from { opacity: .25; transform: translateY(6px); }
+  from { opacity: .88; transform: translateY(4px); }
   to { opacity: 1; transform: none; }
 }
 .scene-label { margin: 0 0 9px; color: #dfc4fa; }
@@ -713,7 +713,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible {
   .studio-wrap { width: calc(100% - 44px); }
   .studio-hero { gap: 19px; min-height: 203px; padding-block: 26px; }
   .hero-support p { font-size: 1rem; max-width: 20ch; }
-  .studio-lens { right: -1.5%; top: 5%; width: 31%; opacity: .58; }
+  .studio-lens { right: -1.5%; top: 5%; width: 29%; opacity: .28; }
   .pane-toolbar { padding-inline: 12px; }
   .panel-heading { flex-wrap: wrap; }
   .panel-heading h2 { font-size: 1.46rem; }
@@ -731,7 +731,7 @@ button:focus-visible, a:focus-visible, summary:focus-visible {
   .studio-hero h1 { font-size: clamp(2.38rem, 6vw, 3.05rem); }
   .hero-support { max-width: 195px; padding-bottom: 0; }
   .hero-support p { margin-bottom: 10px; }
-  .studio-lens { right: -3%; width: 35%; opacity: .36; }
+  .studio-lens { right: -3%; width: 35%; opacity: .29; }
   .phase-tabs button { min-height: 51px; }
   .browser-page { padding-inline: 20px; }
   .pane-toolbar { gap: 7px; }
