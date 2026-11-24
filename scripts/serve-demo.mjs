@@ -13,6 +13,9 @@ const mime = {
   '.js': 'text/javascript',
   '.css': 'text/css',
   '.webp': 'image/webp',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.png': 'image/png',
   '.gif': 'image/gif',
 }
 const server = http.createServer(async (req, res) => {

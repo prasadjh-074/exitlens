@@ -67,14 +67,53 @@ try {
     }
   }
   await ui.goto(base + '/dashboard.html')
-  await site.goto(demo)
+  await site.goto(demo + '/stillframe')
   await site
     .getByRole('button', { name: 'Customise preferences', exact: true })
     .click()
   expect(await records()).toHaveLength(0)
   await ui.getByRole('button', { name: 'Enable a site', exact: true }).click()
   await ui.getByRole('button', { name: 'Enable recording' }).click()
-  await ready('/')
+  await ready('/stillframe')
+
+  // Replay controls depict the same site actions, but must leave real extension history alone.
+  const studio = await context.newPage()
+  studio.on('pageerror', (e) => errors.push(e.message))
+  await studio.goto(demo)
+  await expect(
+    studio.getByRole('heading', { name: 'The web’s missing undo button.' }),
+  ).toBeVisible()
+  await shot(studio, 'presentation')
+  for (const label of [
+    'View trial offer',
+    'Start free trial',
+    'Find undo path',
+    'Account settings',
+    'Manage subscription',
+    'Cancel plan',
+    'Continue cancellation',
+  ])
+    await studio.getByRole('button', { name: label, exact: true }).click()
+  await expect(studio.getByText('Guide paused', { exact: true })).toBeVisible()
+  for (const label of [
+    'Use accessible verification',
+    'Complete human verification',
+    'Continue to confirmation',
+    'Confirm cancellation',
+  ])
+    await studio.getByRole('button', { name: label, exact: true }).click()
+  await expect(
+    studio.getByRole('heading', { name: 'Cancellation verified' }),
+  ).toBeVisible()
+  await expect(studio.getByText('4.00×', { exact: true })).toBeVisible()
+  await shot(studio, 'presentation-report')
+  expect(await records()).toHaveLength(0)
+  await studio.getByRole('button', { name: 'Reset walkthrough' }).click()
+  await expect(
+    studio.getByRole('button', { name: 'Previous step' }),
+  ).toBeDisabled()
+  await studio.close()
+
   await site
     .getByRole('button', { name: 'Reject cookies', exact: true })
     .click()
@@ -173,7 +212,7 @@ try {
     .poll(async () => (await records()).find((r) => r.id === record.id)?.status)
     .toBe('Reversed')
   console.log(
-    'PASS: opt-in, simulated tracker, trial terms, real clicks, graph, checkpoint, receipt, narrow panel and restart persistence.',
+    'PASS: isolated presentation replay, opt-in, simulated tracker, trial terms, real clicks, graph, checkpoint, receipt, narrow panel and restart persistence.',
   )
 } finally {
   await context?.close()

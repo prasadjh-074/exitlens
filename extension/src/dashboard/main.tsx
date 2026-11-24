@@ -30,6 +30,7 @@ import {
 } from 'lucide-react'
 import {
   DEMO,
+  STILLFRAME_PATH,
   EMPTY,
   FIXTURE,
   sitePattern,
@@ -255,7 +256,7 @@ function App() {
           <button className="primary" disabled={busy} type="submit">
             <Plus size={16} /> Enable recording
           </button>
-          <a className="btn" href={DEMO} target="_blank" rel="noreferrer">
+          <a className="btn" href={DEMO + STILLFRAME_PATH} target="_blank" rel="noreferrer">
             Open demo <ExternalLink size={14} />
           </a>
         </div>
@@ -531,7 +532,7 @@ function App() {
                       ) : db.sites.some((s) => s.origin === DEMO) ? (
                         <a
                           className="btn"
-                          href={DEMO}
+                          href={DEMO + STILLFRAME_PATH}
                           target="_blank"
                           rel="noreferrer"
                         >

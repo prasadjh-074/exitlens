@@ -118,6 +118,10 @@ export interface TabMemory {
 export const EMPTY: Database = { sites: [], records: [] }
 export const DEMO = 'http://127.0.0.1:4173'
 export const FIXTURE = 'http://localhost:4173'
+export const STILLFRAME_PATH = '/stillframe'
+export function isDemoStudioPath(pathname: string) {
+  return pathname === '/' || pathname === '/present' || pathname === '/present/'
+}
 export function sitePattern(origin: string) {
   const url = new URL(origin)
   return url.protocol + '//' + url.hostname + '/*'

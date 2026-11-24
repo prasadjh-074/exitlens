@@ -8,7 +8,14 @@ import {
 } from '../detectors'
 import { endpoint } from '../graph'
 import { challenge, inspectBarriers } from '../accessibility'
-import type { Candidate, Click, Snapshot } from '../types'
+import {
+  DEMO,
+  FIXTURE,
+  isDemoStudioPath,
+  type Candidate,
+  type Click,
+  type Snapshot,
+} from '../types'
 
 interface Reply {
   allowed: boolean
@@ -72,6 +79,9 @@ function relevantText(e: Element) {
     .slice(0, 12000)
 }
 async function start() {
+  const { origin, pathname } = location
+  if ((origin === DEMO || origin === FIXTURE) && isDemoStudioPath(pathname))
+    return
   if (env.__exitLens) {
     env.__exitLens()
     return

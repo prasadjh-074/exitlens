@@ -1,3 +1,8 @@
+import {
+  buildReplay,
+  guideStart,
+  lastScene,
+} from '../demo-site/src/studio/scenario'
 import { describe, it, expect } from 'vitest'
 import {
   candidate,
@@ -202,5 +207,32 @@ describe('local records and verification', () => {
     expect(
       classifyRequest(DEMO, new URL('https://ad.doubleclick.net/')).tracker,
     ).toBe(true)
+  })
+})
+
+describe('presentation replay', () => {
+  it('shows terms before a record and confirms a trial only after entry', () => {
+    expect(buildReplay(0)).toMatchObject({
+      terms: { trialDays: 7, initial: '₹0', recurring: '₹799' },
+      record: null,
+    })
+    const started = buildReplay(guideStart)
+    expect(started.record?.status).toBe('Active')
+    expect(started.next?.label).toBe('Account settings')
+  })
+
+  it('waits for the receipt and counts only completed fictional actions', () => {
+    expect(buildReplay(lastScene - 1)).toMatchObject({
+      ratio: null,
+      record: { verification: 'Pending verification' },
+    })
+    const finished = buildReplay(lastScene)
+    expect(finished.ratio).toBe(4)
+    expect(finished.record?.status).toBe('Reversed')
+    expect(finished.record?.entry).toHaveLength(2)
+    expect(finished.record?.reversal).toHaveLength(8)
+    expect(finished.record?.evidence.map(({ text }) => text)).toContain(
+      'Your subscription is cancelled.',
+    )
   })
 })

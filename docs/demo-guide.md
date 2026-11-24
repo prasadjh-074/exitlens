@@ -1,6 +1,12 @@
 # Four-minute demonstration
 
-## Prepare the recording
+## Present from one tab
+
+Build and run the demo with the commands below, then open the [interactive walkthrough](http://127.0.0.1:4173/). No extension setup is needed for this fictional replay. Maximise the browser and select **Present** for a recording layout with Stillframe beside ExitLens’s evidence. Advance using the highlighted controls or the arrow keys. **Play walkthrough** runs the same sequence automatically. Open **Presenter notes** for narration tied to each step.
+
+For a short presentation, show the trial offer and its terms, the guide pausing at human verification, then the receipt beside the verified report. **Reset walkthrough** returns to the first scene and affects only the replay.
+
+## Prepare a live extension recording
 
 From the repository root:
 
@@ -10,7 +16,7 @@ npm run build
 npm run demo
 ```
 
-Load `extension/dist` through **Developer mode → Load unpacked** on `chrome://extensions`. Pin ExitLens. Use a dedicated Chrome profile for a clean ledger and keep the local server running. Open [Stillframe](http://127.0.0.1:4173) on a wide window so the website and side panel fit together.
+Load `extension/dist` through **Developer mode → Load unpacked** on `chrome://extensions`. Pin ExitLens. Use a dedicated Chrome profile for a clean ledger and keep the local server running. Open [Stillframe](http://127.0.0.1:4173/stillframe) on a wide window so the website and side panel fit together.
 
 If you rehearsed using this profile, open Stillframe's **Demo controls → Reset demo → Reset fictional account**. In the extension, clear old rehearsal records through **Site access → Clear memory → Erase all records**. For the on-camera opt-in, use **Remove access** for the fictional origin. Keep the demo's simulated request setting enabled. This reset affects the fictional account and ExitLens history in the chosen profile.
 
@@ -44,7 +50,7 @@ npx playwright install chromium
 EXITLENS_SCREENSHOTS=./screenshots npm run test:e2e
 ```
 
-The runner writes `dashboard.png`, `reversal-graph.png`, `report.png` and `side-panel.png` as it reaches those steps. Its test profile uses only the fictional loopback hosts.
+The runner writes `presentation.png`, `presentation-report.png`, `dashboard.png`, `reversal-graph.png`, `report.png` and `side-panel.png` as it reaches those steps. Its test profile uses only the fictional loopback hosts.
 
 ## If a demo step is missing
 

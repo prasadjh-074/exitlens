@@ -65,3 +65,7 @@ Stillframe has local fictional account state and publishes visible trial terms a
 | [`extension/src/verification`](../extension/src/verification) | Evidence decision and ratio eligibility |
 | [`extension/src/accessibility`](../extension/src/accessibility) | Selected axe-core rules and human checkpoint detection |
 | [`extension/src/dashboard`](../extension/src/dashboard) | Shared dashboard and side panel |
+
+## Presentation replay
+
+The presentation at `/` uses in-memory fictional scenes with the same terms parser, reversal graph helpers and verification rules. It is separate from the live sandbox at `/stillframe`. The content observer skips the presentation route on the demo hosts.

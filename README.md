@@ -12,7 +12,7 @@ Starting a trial or granting consent can take one click. Weeks later, the terms,
 - **Reverse** with a guide that highlights a visible control and grows a directed graph as you move through the site's own settings.
 - **Verify** the outcome from fresh page evidence. If you close a record yourself, the ledger shows **User marked as resolved**.
 
-## Quick start
+## Presentation demo
 
 Use Node.js 22.12 or newer and Chrome 120 or newer.
 
@@ -24,10 +24,14 @@ npm run build
 npm run demo
 ```
 
+Open the [interactive walkthrough](http://127.0.0.1:4173/). Select **Play walkthrough** for a self-running preview, or use the page controls and arrow keys to tell the story at your pace. **Present** expands the walkthrough for recording. The fictional replay uses the project’s terms parser, path planner and verification rules, with its own in-memory scenario.
+
+## Live extension walkthrough
+
 1. Open `chrome://extensions`, enable **Developer mode**, select **Load unpacked**, and choose this repository's `extension/dist` directory.
 2. Click **ExitLens** from the Chrome extensions menu to open the side panel. Pin it for easier access. The panel's external-link icon opens the full dashboard. You can also open the extension's options from `chrome://extensions`.
 3. In **Site access**, enter `http://127.0.0.1:4173` and click **Enable recording**. Leave **Include the simulated tracker at localhost:4173** checked to demonstrate the consent audit. Approve the browser's host request.
-4. Click **Open demo** or visit [Stillframe](http://127.0.0.1:4173). Use the IP address for the demo page. The separate `localhost` address serves the simulated request.
+4. Click **Open demo** or visit [Stillframe](http://127.0.0.1:4173/stillframe). Use the IP address for the live sandbox. The separate `localhost` address serves the simulated request.
 5. Click **Reject cookies**, then **View trial offer** and **Start free trial**. Open the new trial record with **View Evidence**. The fictional plan shows ₹0 up front and ₹799 per month after seven days.
 6. Select **Find Undo Path**, then **Start or resume guide** while Stillframe is open. Follow **Account settings → Manage subscription → Cancel plan → Continue cancellation**. At the simulated human checkpoint, choose **Use accessible verification**, then **Complete human verification** in its panel.
 7. Click **Continue to confirmation** and **Confirm cancellation**. Check the fictional receipt and open the trial's **Report** in ExitLens. Reopen the same Chrome profile to check that its history persists.
@@ -67,7 +71,7 @@ npm run test:e2e
 
 Vitest covers detection, ambiguous price extraction, URL redaction, pathfinding, verification, and the service worker with mocked Chrome APIs. The Playwright runner uses a fresh Chrome for Testing profile and a temporary extension copy with access limited to the two loopback hosts. It exercises app-level opt-in, trusted clicks, the consent signal, guided cancellation, the receipt, the side-panel layout and restart persistence.
 
-Lint, strict type checks, 30 Vitest tests and both production builds passed. A signed-out Chrome for Testing profile loaded the production extension, granted the two loopback hosts, recorded the simulated tracker request, and completed the trial and guided cancellation. The native side panel displayed a verified report with eight reversal actions and two entry actions (4.00×). The verified record and cookie audit survived closing and reopening the profile window. The headless Playwright runner still could not start Chrome in the restricted build shell. Public GOV.UK cookie-banner labels were checked against the classifier without changing live settings. [GOV.UK](https://www.gov.uk/)
+Lint, strict type checks, 32 Vitest tests and both production builds passed. A signed-out Chrome for Testing profile loaded the production extension, granted the two loopback hosts, recorded the simulated tracker request, and completed the trial and guided cancellation. The native side panel displayed a verified report with eight reversal actions and two entry actions (4.00×). The verified record and cookie audit survived closing and reopening the profile window. The headless Playwright runner still could not start Chrome in the restricted build shell. Public GOV.UK cookie-banner labels were checked against the classifier without changing live settings. [GOV.UK](https://www.gov.uk/)
 
 ## Current limits
 
@@ -86,7 +90,7 @@ The deterministic workflow runs without credentials or a backend. The extension 
 | Path | Purpose |
 | --- | --- |
 | `extension/` | MV3 worker, content observer, dashboard, side panel, graph and evidence |
-| `demo-site/` | Stillframe, the fictional streaming sandbox |
+| `demo-site/` | Interactive presentation and Stillframe live sandbox |
 | `scripts/serve-demo.mjs` | Production demo server and loopback request fixture |
 | `tests/` | Vitest and browser walkthrough runner |
 | `docs/` | Architecture, privacy, video walkthrough and roadmap |

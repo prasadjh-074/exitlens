@@ -1,3 +1,4 @@
+import { DEMO, FIXTURE, STILLFRAME_PATH } from '../types'
 import type { Action, Candidate, Terms } from '../types'
 const contextualConsent = /\b(cookies?|tracking|advertising|consent)\b/i
 const contextualPlan =
@@ -71,7 +72,10 @@ export function safeUrl(raw: string, origin: string): string | null {
       u.password ||
       u.search ||
       u.hash ||
-      !u.pathname.split('/').every((s) => !s || allowedSegment.test(s))
+      !(
+        u.pathname.split('/').every((s) => !s || allowedSegment.test(s)) ||
+        ((origin === DEMO || origin === FIXTURE) && u.pathname === STILLFRAME_PATH)
+      )
     )
       return null
     return u.origin + u.pathname
